@@ -73,7 +73,9 @@ class CachedRemoteData
 
         if (! $item->isHit()) {
             // Cache for a day
-            $item->set($this->load(), 86400);
+            $item
+                ->set($this->load(), 86400)
+                ->save();
         }
 
         return $item->get();
