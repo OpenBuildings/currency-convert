@@ -11,8 +11,13 @@ use SebastianBergmann\Money\Currency;
  */
 class NullSource implements SourceInterface
 {
+    /**
+     * @param  Currency $from
+     * @param  Currency $to
+     * @return float
+     */
     public function getRateBetween(Currency $from, Currency $to)
     {
-        return 1;
+        return 1.0;
     }
 }

@@ -15,9 +15,20 @@ use InvalidArgumentException;
  */
 class ECBSource implements SourceInterface
 {
-    private $rates = array();
+    /**
+     * @var array
+     */
+    private $rates;
+
+    /**
+     * @var CachedRemoteData
+     */
     private $cachedRemoteData;
 
+    /**
+     * @param CacheItemPoolInterface $cachePool
+     * @param string                 $key
+     */
     public function __construct(CacheItemPoolInterface $cachePool, $key = 'ECBSource')
     {
         $this->cachedRemoteData = new CachedRemoteData(
@@ -27,16 +38,27 @@ class ECBSource implements SourceInterface
         );
     }
 
+    /**
+     * @return CachedRemoteData
+     */
     public function getCachedRemoteData()
     {
         return $this->cachedRemoteData;
     }
 
+    /**
+     * @return string
+     * @throws Exception If error retrieving remote data
+     */
     public function getData()
     {
         return $this->cachedRemoteData->get();
     }
 
+    /**
+     * @return array
+     * @throws Exception If error retrieving remote data
+     */
     public function getRates()
     {
         if (! $this->rates) {
@@ -58,6 +80,11 @@ class ECBSource implements SourceInterface
         return $this->rates;
     }
 
+    /**
+     * @param  Currency $currency
+     * @return float
+     * @throws Exception If error retrieving remote data
+     */
     public function getRate(Currency $currency)
     {
         $rates = $this->getRates();
@@ -72,6 +99,11 @@ class ECBSource implements SourceInterface
         return (float) $rates[$code];
     }
 
+    /**
+     * @param  Currency $from
+     * @param  Currency $to
+     * @return float
+     */
     public function getRateBetween(Currency $from, Currency $to)
     {
         $from = $this->getRate($from);

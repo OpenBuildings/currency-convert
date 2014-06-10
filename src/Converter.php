@@ -13,13 +13,23 @@ use LogicException;
  */
 class Converter
 {
+    /**
+     * @var Converter
+     */
     private static $instance;
 
+    /**
+     * Create a new Converter object that you can later get through "::get()"
+     * @param  SourceInterface $source
+     */
     public static function initialize(SourceInterface $source)
     {
         self::$instance = new static($source);
     }
 
+    /**
+     * @return Converter
+     */
     public static function get()
     {
         if (! self::$instance) {
@@ -29,11 +39,17 @@ class Converter
         return self::$instance;
     }
 
+    /**
+     * Clear the object, returned through "::get"
+     */
     public static function clear()
     {
         self::$instance = null;
     }
 
+    /**
+     * @var SourceInterface
+     */
     private $source;
 
     public function __construct(SourceInterface $source)
@@ -41,11 +57,20 @@ class Converter
         $this->source = $source;
     }
 
+    /**
+     * @return SourceInterface
+     */
     public function getSource()
     {
         return $this->source;
     }
 
+    /**
+     * @param  Money    $money
+     * @param  Currency $to
+     * @param  int      $roundingMode
+     * @return Money
+     */
     public function convert(Money $money, Currency $to, $roundingMode = PHP_ROUND_HALF_UP)
     {
         $new = new Money($money->getAmount(), $to);

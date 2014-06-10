@@ -11,5 +11,10 @@ use SebastianBergmann\Money\Currency;
  */
 interface SourceInterface
 {
+    /**
+     * @param  Currency $from
+     * @param  Currency $to
+     * @return float
+     */
     public function getRateBetween(Currency $from, Currency $to);
 }
