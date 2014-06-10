@@ -56,7 +56,7 @@ class ConverterTest extends AbstractTestCase
      */
     public function testConvert()
     {
-        $source = $this->getMock('CL\CurrencyConvert\NullSource', ['getRateBetween']);
+        $source = $this->getMock('CL\CurrencyConvert\NullSource', array('getRateBetween'));
 
         $converter = new Converter($source);
 

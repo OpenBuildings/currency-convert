@@ -41,7 +41,7 @@ class ECBSourceTest extends AbstractTestCase
     public function testGetRates()
     {
         $pool = $this->getNullItemPool();
-        $source = $this->getMock('CL\CurrencyConvert\ECBSource', ['getData'], [$pool]);
+        $source = $this->getMock('CL\CurrencyConvert\ECBSource', array('getData'), array($pool));
         $data = file_get_contents(__DIR__.'/../example_ecb.xml');
 
         $source
@@ -68,7 +68,7 @@ class ECBSourceTest extends AbstractTestCase
     public function testGetRatesError()
     {
         $pool = $this->getNullItemPool();
-        $source = $this->getMock('CL\CurrencyConvert\ECBSource', ['getData'], [$pool]);
+        $source = $this->getMock('CL\CurrencyConvert\ECBSource', array('getData'), array($pool));
         $data = file_get_contents(__DIR__.'/../error_ecb.xml');
 
         $source
@@ -85,7 +85,7 @@ class ECBSourceTest extends AbstractTestCase
     public function testGetRate()
     {
         $pool = $this->getNullItemPool();
-        $source = $this->getMock('CL\CurrencyConvert\ECBSource', ['getRates'], [$pool]);
+        $source = $this->getMock('CL\CurrencyConvert\ECBSource', array('getRates'), array($pool));
 
         $rates = array(
             'EUR' => '1',
@@ -113,7 +113,7 @@ class ECBSourceTest extends AbstractTestCase
     public function testGetRateBetween()
     {
         $pool = $this->getNullItemPool();
-        $source = $this->getMock('CL\CurrencyConvert\ECBSource', ['getRate'], [$pool]);
+        $source = $this->getMock('CL\CurrencyConvert\ECBSource', array('getRate'), array($pool));
 
         $eur = new Currency('EUR');
         $usd = new Currency('USD');

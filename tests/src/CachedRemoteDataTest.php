@@ -36,8 +36,8 @@ class CachedRemoteDataTest extends AbstractTestCase
     {
         $cachedRemoteData = $this->getMock(
             'CL\CurrencyConvert\CachedRemoteData',
-            ['load'],
-            [$this->getNullItemPool(), 'http://url.example.com']
+            array('load'),
+            array($this->getNullItemPool(), 'http://url.example.com')
         );
 
         $cachedRemoteData
