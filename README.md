@@ -23,7 +23,7 @@ Converter::initialize(new ECBSource(new ItemPool()));
 
 $hundred_pounds = new GBP(10000);
 
-$converted = Converter::get()->convet($hundred_pounds, new Currency('EUR'));
+$converted = Converter::get()->convert($hundred_pounds, new Currency('EUR'));
 ```
 
 You have to initialize the converter with a source object - default is ECBSource. It also requires a cache pool object (based on [PSR Cache](https://github.com/clippings/psr-cache))
